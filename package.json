@@ -1,0 +1,14 @@
+{
+  "name": "bookLists",
+  "version": "1.0.0",
+  "description": "Create list of books from Google Books API",
+  "main": "server/server.js",
+  "repository": "https://github.com/dgdblank/BookLists.git",
+  "author": "Danielle Blank",
+  "license": "MIT",
+  "dependencies": {
+    "bookshelf": "^0.8.1",
+    "express": "^4.13.3",
+    "morgan": "^1.6.1"
+  }
+}
