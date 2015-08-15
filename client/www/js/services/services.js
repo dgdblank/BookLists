@@ -1,6 +1,6 @@
 angular.module('starter.sevices', [])
 
-.factory('Auth', function($http){
+.factory('Auth', function ($http){
 	var signup = function(user){
 		return $http({
 			method: "POST",
@@ -27,4 +27,18 @@ angular.module('starter.sevices', [])
 		signup: signup,
 		signin: signin
 	};
+})
+
+.factory('authenticationService', function ($window){
+	var auth = {
+		isLogged: false
+	};
+
+	try {
+		if ($window.localStorage.getItem("jwtToken")){
+			auth.isLogged = true;
+		}
+	} catch (e) {};
+
+	return auth;
 })

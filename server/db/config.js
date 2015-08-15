@@ -1,18 +1,7 @@
 // Connects the SQL database and creates database tables
-var Bookshelf = require("bookshelf");
 
-// development
-// var knex = require("knex")({
-// 	client: "mysql",
-// 	connection: {
-// 		host: "localhost",
-// 		user: "root",
-// 		database: "booklists",
-// 		charset: "utf8"
-// 	}
-// });
-
-var db = Bookshelf.initialize({
+//development
+var knex = require("knex")({
 	client: "mysql",
 	connection: {
 		host: "localhost",
@@ -21,6 +10,8 @@ var db = Bookshelf.initialize({
 		charset: "utf8"
 	}
 });
+
+var db = require("bookshelf")(knex);
 
 db.knex.schema.hasTable("users").then(function (exist){
 	if (!exist) {
@@ -78,8 +69,8 @@ db.knex.schema.hasTable("books").then(function (exist){
 db.knex.schema.hasTable("lists_books").then(function (exist){
 	if (!exist) {
 		db.knex.schema.createTable("lists_books", function (table){
-			table.integer("list_id").references("lists.id").inTable("lists");
-			table.integer("book_id").references("books.id").inTable("books");
+			table.integer("list_id").unsigned().references("lists.id");
+			table.integer("book_id").unsigned().references("books.id");
 		}).then(function (table){
 			console.log("Created LISTS_BOOKS join table");
 		});

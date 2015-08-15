@@ -34,19 +34,22 @@ angular.module('starter',
     url: '/app',
     abstract: true,
     templateUrl: 'templates/menu.html',
-    controller: 'AppCtrl'
+    controller: 'AppCtrl',
+    access: {login: true} // applies to all children of app
   })
 
   .state('signin', {
     url: '/signin',
     templateUrl: 'templates/signin.html',
-    controller: 'AuthCtrl'
+    controller: 'AuthCtrl',
+    access: {login: false}
   })
 
   .state('signup', {
     url: '/signup',
     templateUrl: "templates/signup.html",
-    controller: "AuthCtrl"
+    controller: "AuthCtrl",
+    access: {login: false}
   })
 
   .state('app.search', {
@@ -88,3 +91,30 @@ angular.module('starter',
   // if none of the above states are matched, use this as the fallback
   $urlRouterProvider.otherwise('/signin');
 });
+
+.factory("AttachTokens", function ($window){
+  // this is an $httpInteceptor
+  // It stops out going requests then looks in local storage to find the user's token
+  // then adds it to the header so the server can validate the request
+  var attach = {
+    request: function (object) {
+      var jwt = $window.localStorage.getItem("com.starter");
+      if (jwt) {
+        object.headers["x-access-token"] = jwt;
+      }
+      object.headers["Allow-Control-Allow-Origin"] = "*";
+      return objectl
+    }
+  };
+  return attach;
+})
+
+.run(function ($rootScope, $location, $window, authenticationService){
+  
+  $rootScope.$on("$stateChangeStart", function (event, toState){
+    if(toState.access.login && !authenticationService.isLogged){
+      $location.path("/signin");
+    }
+  });
+
+})
