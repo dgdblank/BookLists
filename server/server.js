@@ -3,10 +3,11 @@ var app = express();
 
 // configure server with middleware and routing
 require("./middleware.js")(app, express);
+app.use(express.static(__dirname + "/../www"));
 
-var port = 3000;
-app.listen(port, function(){
-	console.log("Listening on " + port);
+app.set("port", process.env.PORT || 8000);
+app.listen(app.get("port"), function(){
+	console.log("Listening on " + app.get("port"));
 })
 
 module.exports = app;
