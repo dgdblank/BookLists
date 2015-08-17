@@ -2,12 +2,13 @@ angular.module('starter.search', [])
 
 .controller('SearchCtrl', function ($scope, Books){
   $scope.book = {};
+  $scope.searchResults = [];
 
   $scope.search = function(){
     Books.findBook($scope.book.title)
-      .then(function (bookData){
-        console.log(bookData);
-          // Books.addBook(bookData);
+      .then(function (books){
+        debugger;
+        $scope.searchResults = books.data.items;
       })
       .catch(function (error){
         throw new Error(error);
@@ -15,5 +16,7 @@ angular.module('starter.search', [])
 
     $scope.book.title = '';
   };
+
+
 
 });

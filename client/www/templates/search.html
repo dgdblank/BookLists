@@ -1,9 +1,19 @@
 <ion-view view-title="Search">
   <ion-content>
-    <h1>Search</h1>
     <form ng-submit="search()">
       <input ng-model="book.title" placeholder="Search by Title">
       <button class="balanced">Search</button>
     </form>
+    <ion-list>
+      <ion-item ng-repeat="result in searchResults">
+      <img ng-src="{{result.volumeInfo.imageLinks.thumbnail}}">
+      <div>
+      {{result.volumeInfo.title}}
+      </div>
+      <div>
+      {{result.volumeInfo.authors[0]}}
+      </div>
+      </ion-item>
+    <ion-list>
   </ion-content>
 </ion-view>
