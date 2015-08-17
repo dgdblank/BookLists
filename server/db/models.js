@@ -49,10 +49,10 @@ var Book = exports.Book = db.Model.extend({
 	}
 });
 
-var Type = exports.Type = db.Model.extend({
-	tableName: "types",
+// var Type = exports.Type = db.Model.extend({
+// 	tableName: "types",
 
-	lists: function() {
-		return this.hasMany(List, "list_type_id");
-	}
-})
+// 	lists: function() {
+// 		return this.hasMany(List, "list_type_id");
+// 	}
+// })

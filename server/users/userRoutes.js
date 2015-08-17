@@ -11,6 +11,5 @@ module.exports = function (app) {
   app.param("userId", userController.getUserById);
 
   app.post('/:userId/addList', userController.addList);
-  app.get('/:userId/getLists', userController.getLists);
-  
+  app.get('/:userId/getLists', userController.getLists);  
 }

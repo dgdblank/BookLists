@@ -59,6 +59,10 @@ angular.module('starter.services', [])
 	};
 })
 
+.factory('Books', function ($http){
+	
+})
+
 // .factory('authenticationService', function ($window){
 // 	var auth = {
 // 		isLogged: false

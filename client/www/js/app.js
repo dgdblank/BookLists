@@ -9,6 +9,7 @@ angular.module('starter',
   'starter.app',
   'starter.auth',
   'starter.lists',
+  'starter.list',
   'starter.services',
   ])
 
@@ -86,12 +87,12 @@ angular.module('starter',
       }
     })
 
-  .state('app.single', {
-    url: '/playlists/:playlistId',
+  .state('app.list', {
+    url: '/lists/:listId',
     views: {
       'menuContent': {
-        templateUrl: 'templates/playlist.html',
-        controller: 'PlaylistCtrl'
+        templateUrl: 'templates/list.html',
+        controller: 'ListCtrl'
       }
     }
   });
