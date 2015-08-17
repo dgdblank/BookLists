@@ -7,7 +7,6 @@ angular.module('starter.search', [])
   $scope.search = function(){
     Books.findBook($scope.book.title)
       .then(function (books){
-        debugger;
         $scope.searchResults = books.data.items;
       })
       .catch(function (error){
