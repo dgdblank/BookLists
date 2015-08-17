@@ -8,7 +8,8 @@ angular.module('starter',
   ['ionic', 
   'starter.app',
   'starter.auth',
-  'starter.services'
+  'starter.lists',
+  'starter.services',
   ])
 
 .run(function($ionicPlatform) {
@@ -75,12 +76,12 @@ angular.module('starter',
         }
       }
     })
-    .state('app.playlists', {
-      url: '/playlists',
+    .state('app.lists', {
+      url: '/lists',
       views: {
         'menuContent': {
-          templateUrl: 'templates/playlists.html',
-          controller: 'PlaylistsCtrl'
+          templateUrl: 'templates/lists.html',
+          controller: 'ListsCtrl'
         }
       }
     })

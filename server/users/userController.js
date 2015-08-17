@@ -1,16 +1,15 @@
 var jwt = require("jwt-simple");
+// var Promise = require('bluebird');
 var Models = require('../db/models.js');
 var User = Models.User;
 var List = Models.List;
-var Promise = require('bluebird');
 
 var secret = "MYWITTYSECRET";
 
 module.exports = {
 	
 	getUserById: function(req, res, next, userId){
-		console.log('getUserById invoked');
-		console.log(userId);
+		console.log('getUserById', userId);
 		User.forge({id: userId})
 			.fetch()
 			.then(function (user){
@@ -26,8 +25,7 @@ module.exports = {
 	},
 
 	addList: function(req, res) {
-		console.log('invoked addList: user = ', req.user);
-		console.log('req.body =', req.body);
+		console.log(req.body);
 		var name = req.body.name;
 		var type = req.body.type;
 		List.forge({ 

@@ -1,6 +1,7 @@
 angular.module('starter.services', [])
 
 .factory('Auth', function ($http){
+
 	var signup = function (user){
 		console.log('services reached', user);
 		return $http({
@@ -29,7 +30,23 @@ angular.module('starter.services', [])
 		signup: signup,
 		signin: signin
 	};
-});
+})
+
+.factory('Lists', function ($http){
+
+	var addList = function(list, id){
+		console.log('list', list);
+		return $http({
+			method: "POST",
+			url: "/users/" + id + "/addList",
+			data: JSON.stringify(list)
+		});
+	};
+
+	return {
+		addList: addList
+	};
+})
 
 // .factory('authenticationService', function ($window){
 // 	var auth = {
