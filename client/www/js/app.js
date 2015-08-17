@@ -10,6 +10,7 @@ angular.module('starter',
   'starter.auth',
   'starter.lists',
   'starter.list',
+  'starter.search',
   'starter.services',
   ])
 
@@ -64,7 +65,8 @@ angular.module('starter',
     url: '/search',
     views: {
       'menuContent': {
-        templateUrl: 'templates/search.html'
+        templateUrl: 'templates/search.html',
+        controller: "SearchCtrl"
       }
     }
   })

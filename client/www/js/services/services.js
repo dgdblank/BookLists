@@ -60,7 +60,23 @@ angular.module('starter.services', [])
 })
 
 .factory('Books', function ($http){
-	
+
+	var findBook = function(title){
+		title = title.split(' ').join('+');
+		var bookUrl = 'https://www.googleapis.com/books/v1/volumes?q=' + title + '&fields=items(volumeInfo/title,volumeInfo/authors,volumeInfo/pageCount,volumeInfo/imageLinks/thumbnail,volumeInfo/categories)';
+		return $http({
+			method: "GET",
+			url: bookUrl
+		})
+		.then(function (resp){
+			return resp;
+		})
+	};
+
+	return {
+		findBook: findBook
+	}
+
 })
 
 // .factory('authenticationService', function ($window){

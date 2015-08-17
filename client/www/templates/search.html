@@ -1,5 +1,9 @@
 <ion-view view-title="Search">
   <ion-content>
     <h1>Search</h1>
+    <form ng-submit="search()">
+      <input ng-model="book.title" placeholder="Search by Title">
+      <button class="balanced">Search</button>
+    </form>
   </ion-content>
 </ion-view>

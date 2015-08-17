@@ -57,8 +57,7 @@ db.knex.schema.hasTable("books").then(function (exist){
 			book.string("author");
 			book.string("genre");
 			book.integer("pages");
-			book.string("link");
-			book.string("code");
+			book.string("thumbnail");
 		}).then(function (table){
 			console.log("Created BOOKS table");
 		});
