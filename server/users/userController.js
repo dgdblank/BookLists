@@ -1,8 +1,10 @@
 var jwt = require("jwt-simple");
 // var Promise = require('bluebird');
 var Models = require('../db/models.js');
+var Collections = require('../db/collections.js');
 var User = Models.User;
 var List = Models.List;
+var Lists = Collections.Lists;
 
 var secret = "MYWITTYSECRET";
 
@@ -25,7 +27,6 @@ module.exports = {
 	},
 
 	addList: function(req, res) {
-		console.log(req.body);
 		var name = req.body.name;
 		var type = req.body.type;
 		List.forge({ 
@@ -44,6 +45,20 @@ module.exports = {
 				console.log(error);
 			});
 
+	},
+
+	getLists: function(req, res){
+		Lists.query("where", "user_id", "=", req.user.id)
+		.fetch()
+		.then(function (lists){
+			if(!lists){
+				throw new Error('user does not have any lists');
+			}
+			res.json(lists);
+		})
+		.catch(function (error){
+			console.log(error);
+		});
 	},
 
 	signup: function(req, res){

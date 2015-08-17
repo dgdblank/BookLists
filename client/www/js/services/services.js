@@ -43,8 +43,19 @@ angular.module('starter.services', [])
 		});
 	};
 
+	var getLists = function(id){
+		return $http({
+			method: "GET",
+			url: "/users/" + id + "/getLists"
+		})
+		.then(function (resp){
+			return resp.data;
+		})
+	}
+
 	return {
-		addList: addList
+		addList: addList,
+		getLists: getLists
 	};
 })
 
