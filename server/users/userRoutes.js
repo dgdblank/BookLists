@@ -7,4 +7,10 @@ module.exports = function (app) {
 
 	app.route("/signin")
 		.post(userController.signin);
+
+  app.param("userId", userController.getUserById);
+
+  app.post('/:userId/addList', userController.addList);
+
+  
 }
