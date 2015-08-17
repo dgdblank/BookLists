@@ -1,7 +1,7 @@
-var bodyParser = require('body-parser'),
-	morgan = require('morgan');
+var bodyParser = require('body-parser');
+var morgan = require('morgan');
 
-module.exports = function(app, express){
+module.exports = function (app, express){
 
 	// logs http requests
 	app.use(morgan("dev"));
@@ -20,4 +20,4 @@ module.exports = function(app, express){
 	//inject the routers into their router files
 	require("./users/userRoutes.js")(userRouter);
 	require("./books/bookRoutes.js")(bookRouter);
-}
+};

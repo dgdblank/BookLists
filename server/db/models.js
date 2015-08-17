@@ -1,6 +1,6 @@
 var db = require("./config.js");
-var bcrypt = require("bcrypt");
 var Promise = require("bluebird");
+var bcrypt = Promise.promisifyAll(require("bcrypt"));
 
 var User = exports.User = db.Model.extend({
 	tableName: "users",

@@ -1,14 +1,16 @@
 angular.module('starter.auth', [])
 
-.controller('AuthCtrl', function ($scope, Auth, $window, $location){
+.controller('AuthCtrl', function ($scope, Auth, $window, $state){
 
 	$scope.user = {};
 
 	$scope.signup = function(user){
+		console.log('controller called');
+		console.log($scope.user);
 		Auth.signup($scope.user)
-			.then(function(data){
+			.then(function (data){
 				$window.localStorage.setItem("jwtToken", data.token);
-				$location.path("app/main");
+				$state.go('app.playlists');
 			})
 			.catch(function (error){
 				console.log(error);
@@ -17,9 +19,9 @@ angular.module('starter.auth', [])
 
 	$scope.signin = function(user){
 		Auth.signin($scope.user)
-			.then(function(data){
+			.then(function (data){
 				$window.localStorage.setItem("jwtToken", data.token);
-				$location.path("app/main");
+				$state.go('app.playlists');
 			})
 			.catch(function (error){
 				console.log(error);

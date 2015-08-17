@@ -35,21 +35,27 @@ angular.module('starter',
     abstract: true,
     templateUrl: 'templates/menu.html',
     controller: 'AppCtrl',
-    access: {login: false} // applies to all children of app
+    access: {
+      login: true
+    } // applies to all children of app
   })
 
   .state('signin', {
     url: '/signin',
     templateUrl: 'templates/signin.html',
     controller: 'AuthCtrl',
-    access: {login: false}
+    access: {
+      login: false
+    }
   })
 
   .state('signup', {
     url: '/signup',
     templateUrl: "templates/signup.html",
     controller: "AuthCtrl",
-    access: {login: false}
+    access: {
+      login: false
+    }
   })
 
   .state('app.search', {
@@ -92,30 +98,17 @@ angular.module('starter',
   $urlRouterProvider.otherwise('/signin');
 })
 
-.factory("AttachTokens", function ($window){
-  // this is an $httpInteceptor
-  // It stops out going requests then looks in local storage to find the user's token
-  // then adds it to the header so the server can validate the request
-  var attach = {
-    request: function (object) {
-      var jwt = $window.localStorage.getItem("com.starter");
-      if (jwt) {
-        object.headers["x-access-token"] = jwt;
-      }
-      object.headers["Allow-Control-Allow-Origin"] = "*";
-      return objectl
+.run(function ($rootScope, $window, $state){
+
+
+  $rootScope.$on("$stateChangeStart", function (event, toState){
+    var requireAccess = toState.access.login;
+
+    if(!$window.localStorage.jwtToken && requireAccess){
+      event.preventDefault();
+      console.log('requires login');
+      $state.go('signin');
     }
-  };
-  return attach;
-})
+  });
+});
 
-// .run(function ($rootScope, $location, $window, authenticationService){
-  
-//   $rootScope.$on("$stateChangeStart", function (event, toState){
-//     var requireLogin = toState.access.login;
-//     if(requireLogin && !authenticationService.isLogged){
-//       $location.path("/signin");
-//     }
-//   });
-
-// })
