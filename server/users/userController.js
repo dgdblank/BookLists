@@ -1,6 +1,7 @@
 var jwt = require("jwt-simple");
 var Models = require('../db/models.js');
 var User = Models.User;
+var List = Models.List;
 var Promise = require('bluebird');
 
 var secret = "MYWITTYSECRET";
@@ -30,7 +31,8 @@ module.exports = {
 					throw new Error('User creation failed.');
 				}
 				res.json({
-					token: jwt.encode(user, secret)
+					token: jwt.encode(user, secret),
+					userId: user.id
 				});
 			})
 			.catch(function (error){
@@ -57,12 +59,12 @@ module.exports = {
 					throw new Error('Incorrect password.');
 				}
 				res.json({
-					token: jwt.encode(foundUser, secret)
+					token: jwt.encode(foundUser, secret),
+					userId: foundUser.id
 				})
 			})
 			.catch(function (error){
 				console.log(error);
 			});
-
 	}
 }

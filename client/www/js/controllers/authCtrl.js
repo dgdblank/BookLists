@@ -1,6 +1,6 @@
 angular.module('starter.auth', [])
 
-.controller('AuthCtrl', function ($scope, Auth, $window, $state){
+.controller('AuthCtrl', function ($scope, Auth, $rootScope, $window, $state){
 
 	$scope.user = {};
 
@@ -10,6 +10,8 @@ angular.module('starter.auth', [])
 		Auth.signup($scope.user)
 			.then(function (data){
 				$window.localStorage.setItem("jwtToken", data.token);
+				$rootScope.currentUser = data.userId;
+				$scope.user = {};
 				$state.go('app.playlists');
 			})
 			.catch(function (error){
@@ -21,6 +23,8 @@ angular.module('starter.auth', [])
 		Auth.signin($scope.user)
 			.then(function (data){
 				$window.localStorage.setItem("jwtToken", data.token);
+				$rootScope.currentUser = data.userId;
+				$scope.user = {};
 				$state.go('app.playlists');
 			})
 			.catch(function (error){
