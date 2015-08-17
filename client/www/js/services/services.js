@@ -1,4 +1,4 @@
-angular.module('starter.sevices', [])
+angular.module('starter.services', [])
 
 .factory('Auth', function ($http){
 	var signup = function(user){

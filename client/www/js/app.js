@@ -6,7 +6,7 @@
 // 'starter.controllers' is found in controllers.js
 angular.module('starter', 
   ['ionic', 
-  'starter',
+  'starter.app',
   'starter.auth',
   'starter.services'
   ])
@@ -35,7 +35,7 @@ angular.module('starter',
     abstract: true,
     templateUrl: 'templates/menu.html',
     controller: 'AppCtrl',
-    access: {login: true} // applies to all children of app
+    access: {login: false} // applies to all children of app
   })
 
   .state('signin', {
@@ -90,7 +90,7 @@ angular.module('starter',
   });
   // if none of the above states are matched, use this as the fallback
   $urlRouterProvider.otherwise('/signin');
-});
+})
 
 .factory("AttachTokens", function ($window){
   // this is an $httpInteceptor
@@ -109,12 +109,13 @@ angular.module('starter',
   return attach;
 })
 
-.run(function ($rootScope, $location, $window, authenticationService){
+// .run(function ($rootScope, $location, $window, authenticationService){
   
-  $rootScope.$on("$stateChangeStart", function (event, toState){
-    if(toState.access.login && !authenticationService.isLogged){
-      $location.path("/signin");
-    }
-  });
+//   $rootScope.$on("$stateChangeStart", function (event, toState){
+//     var requireLogin = toState.access.login;
+//     if(requireLogin && !authenticationService.isLogged){
+//       $location.path("/signin");
+//     }
+//   });
 
-})
+// })
