@@ -1,6 +1,7 @@
 var Models = require('../db/models.js');
 var List = Models.List;
 var Book = Models.Book;
+var _ = require('underscore');
 
 module.exports = {
 
@@ -19,7 +20,6 @@ module.exports = {
       })
   },
 
-//TODO: Check for duplicates in join table;
   addBook: function(req, res){
     var book = req.body.volumeInfo;
 
@@ -27,9 +27,8 @@ module.exports = {
       title: book.title, 
       author: book.authors[0]
     })
-    .fetch()
+    .fetch({withRelated: ['lists']})
     .then(function (foundBook){
-      console.log('book in database?', foundBook);
       if(!foundBook){
         Book.forge({
           title: book.title, 
@@ -44,9 +43,19 @@ module.exports = {
           res.sendStatus(201);
         })
       } else {
-        foundBook.related('lists').attach([req.list.id]);
-        res.sendStatus(201);
-      }ß
+        var lists = foundBook.related('lists').toJSON();
+        var everyTest = _.every(lists, function(list){
+          if(list.id !== req.list.id){
+            return true;
+          }
+        })
+        if(everyTest){
+          foundBook.related('lists').attach([req.list.id]);
+          res.sendStatus(201);
+        } else {
+          throw new Error('Book has already been added to that list');
+        }
+      }
     })
     .catch(function (error){
       console.log(error);
