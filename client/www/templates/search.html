@@ -3,19 +3,22 @@
     <form class="item item-input"ng-submit="search()">
       <i class="icon ion-search placeholder-icon"></i>
       <input ng-model="book.title" type="search" placeholder="Search by Title">
-      <button class="balanced">Search</button>
+      <button class="button-balanced">Search</button>
     </form>
-    <ion-list>
-      <ion-item ng-repeat="result in searchResults">
-      <img ng-src="{{result.volumeInfo.imageLinks.thumbnail}}">
-      <div>
-      {{result.volumeInfo.title}}
-      </div>
-      <div>
-      {{result.volumeInfo.authors[0]}}
-      </div>
-      <button></button>
-      </ion-item>
-    <ion-list>
+    <div class="list">
+      <label ng-repeat="result in searchResults" class="item item-thumbnail-left item-input item-select">
+        <div class="input-label">
+          <img ng-src="{{result.volumeInfo.imageLinks.thumbnail}}">
+          <h2>{{result.volumeInfo.title}}</h2>
+          <p>{{result.volumeInfo.authors[0]}}</p>
+          <select>
+          <option selected>Add to List</option>
+          <option>Blue</option>
+          <option>Green</option>
+          <option>Red</option>
+          </select>
+        </div>
+      </label>
+    </div>
   </ion-content>
 </ion-view>

@@ -17,5 +17,4 @@ angular.module('starter.search', [])
   };
 
 
-
 });
