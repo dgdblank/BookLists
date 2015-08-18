@@ -99,18 +99,6 @@ angular.module('starter',
       login: true
     }
   })
-
-  // .state('logout', {
-  //   url: '/logout',
-  //   controller: function($window, $state){
-  //     delete $window.localStorage.userId;
-  //     delete $window.localStorage.jwtToken;
-  //     $state.go('signin');
-  //   },
-  //   access: {
-  //     login: true
-  //   }
-  // })
   // if none of the above states are matched, use this as the fallback
   $urlRouterProvider.otherwise('/app/lists');
 })

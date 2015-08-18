@@ -12,10 +12,10 @@
           <img ng-src="{{result.volumeInfo.imageLinks.thumbnail}}">
           <h2>{{result.volumeInfo.title}}</h2>
           <p>{{result.volumeInfo.authors[0]}}</p>
-          <select ng-model="selectedList" ng-change="addToList(selectedList, result)">
+        </div>
+          <select ng-model="selectedList" ng-change="addToList(selectedList, result)" placeholder="Add to List">
           <option ng-repeat="list in lists">{{list.name}}</option>
           </select>
-        </div>
       </label>
     </div>
   </ion-content>
