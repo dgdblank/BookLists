@@ -1,6 +1,6 @@
 angular.module('starter.auth', [])
 
-.controller('AuthCtrl', function ($scope, Auth, $rootScope, $window, $state){
+.controller('AuthCtrl', function ($scope, Auth, $rootScope, $window, $location){
 
 	$scope.user = {};
 
@@ -11,7 +11,7 @@ angular.module('starter.auth', [])
 				$window.localStorage.setItem("userId", data.userId);
 				$scope.user.username = '';
 				$scope.user.password = '';
-				$state.go('app.lists');
+				$location.path('/app/lists');
 			})
 			.catch(function (error){
 				console.log(error);
@@ -23,10 +23,9 @@ angular.module('starter.auth', [])
 			.then(function (data){
 				$window.localStorage.setItem("jwtToken", data.token);
 				$window.localStorage.setItem("userId", data.userId);
-				console.log($window.localStorage);
 				$scope.user.username = '';
 				$scope.user.password = '';
-				$state.go('app.lists');
+				$location.path('/app/lists');
 			})
 			.catch(function (error){
 				console.log(error);

@@ -68,6 +68,9 @@ angular.module('starter',
         templateUrl: 'templates/search.html',
         controller: "SearchCtrl"
       }
+    },
+    access: {
+      login: true
     }
   })
 
@@ -78,6 +81,9 @@ angular.module('starter',
         templateUrl: 'templates/lists.html',
         controller: 'ListsCtrl'
       }
+    },
+    access: {
+      login: true
     }
   })
 
@@ -88,18 +94,25 @@ angular.module('starter',
         templateUrl: 'templates/list.html',
         controller: 'ListCtrl'
       }
+    },
+    access: {
+      login: true
     }
   })
 
-  .state('logout', {
-    url: '/logout',
-    controller: function($window, $state){
-      $window.localStorage.removeItem('jwtToken');
-      $state.go('signin');
-    }
-  })
+  // .state('logout', {
+  //   url: '/logout',
+  //   controller: function($window, $state){
+  //     delete $window.localStorage.userId;
+  //     delete $window.localStorage.jwtToken;
+  //     $state.go('signin');
+  //   },
+  //   access: {
+  //     login: true
+  //   }
+  // })
   // if none of the above states are matched, use this as the fallback
-  $urlRouterProvider.otherwise('/signin');
+  $urlRouterProvider.otherwise('/app/lists');
 })
 
 .run(function ($rootScope, $window, $state){
