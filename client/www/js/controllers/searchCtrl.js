@@ -1,8 +1,10 @@
 angular.module('starter.search', [])
 
-.controller('SearchCtrl', function ($scope, Books){
+.controller('SearchCtrl', function ($scope, $rootScope, Books, Lists){
   $scope.book = {};
   $scope.searchResults = [];
+  $scope.selectedList = "Add to List";
+  $scope.userId = $rootScope.currentUser;
 
   $scope.search = function(){
     Books.findBook($scope.book.title)
@@ -17,4 +19,25 @@ angular.module('starter.search', [])
   };
 
 
+  $scope.getLists = function(){
+    Lists.getLists($scope.userId)
+      .then(function (lists){
+        console.log(lists);
+        $scope.lists = lists;
+      })
+  };
+
+  $scope.addToList = function(selectedList, selectedBook){
+    for(var i = 0; i < $scope.lists.length; i++){
+      if($scope.lists[i].name === selectedList){
+        var id = $scope.lists[i].id;
+      }
+    }
+    Books.addBook(id, selectedBook);
+    // TO DO, show success
+    // console.log('list', selectedList);
+    // console.log('book', selectedBook);
+  }
+
+  $scope.getLists();
 });

@@ -17,6 +17,15 @@ module.exports = {
       .catch(function (error){
         console.log(error);
       })
+  },
+
+  addBook: function(req, res){
+    console.log("got to add book");
+    console.log('list', req.list);
+    console.log('book', req.body);
+    // add the book to book table
+    // add book and list to join table
+    // return 200 code
   }
 
 };

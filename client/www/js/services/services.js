@@ -73,9 +73,23 @@ angular.module('starter.services', [])
 		})
 	};
 
+	var addBook = function(listId, book){
+		console.log('addBook reached', book);
+		console.log('listId', listId);
+		return $http({
+			method: "POST",
+			url: "/lists/" + listId + "/addBook",
+			data: book
+		})
+		.then(function (resp){
+			return resp;
+		});
+	};
+
 	return {
-		findBook: findBook
-	}
+		findBook: findBook,
+		addBook: addBook
+	};
 
 })
 

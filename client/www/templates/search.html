@@ -11,11 +11,8 @@
           <img ng-src="{{result.volumeInfo.imageLinks.thumbnail}}">
           <h2>{{result.volumeInfo.title}}</h2>
           <p>{{result.volumeInfo.authors[0]}}</p>
-          <select>
-          <option selected>Add to List</option>
-          <option>Blue</option>
-          <option>Green</option>
-          <option>Red</option>
+          <select ng-model="selectedList" ng-change="addToList(selectedList, result)">
+          <option ng-repeat="list in lists">{{list.name}}</option>
           </select>
         </div>
       </label>
