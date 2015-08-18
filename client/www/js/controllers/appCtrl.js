@@ -1,6 +1,6 @@
 angular.module('starter.app', [])
 
-.controller('AppCtrl', function ($scope, $ionicModal, $window, $state) {
+.controller('AppCtrl', function ($scope, $state) {
 
   // With the new view caching in Ionic, Controllers are only called
   // when they are recreated or on app start, instead of every page change.
@@ -31,8 +31,7 @@ angular.module('starter.app', [])
 
   // removes the user token and redirects the user to signin
   $scope.logout = function() {
-    $window.localStorage.removeItem("jwtToken");
-    $state.go('signin');
+    $state.go('logout');
   };
 
 })
@@ -48,5 +47,5 @@ angular.module('starter.app', [])
 //   ];
 // })
 
-.controller('PlaylistCtrl', function($scope, $stateParams) {
-});
+// .controller('PlaylistCtrl', function($scope, $stateParams) {
+// });

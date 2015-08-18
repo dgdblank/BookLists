@@ -71,23 +71,15 @@ angular.module('starter',
     }
   })
 
-  .state('app.browse', {
-      url: '/browse',
-      views: {
-        'menuContent': {
-          templateUrl: 'templates/browse.html'
-        }
+  .state('app.lists', {
+    url: '/lists',
+    views: {
+      'menuContent': {
+        templateUrl: 'templates/lists.html',
+        controller: 'ListsCtrl'
       }
-    })
-    .state('app.lists', {
-      url: '/lists',
-      views: {
-        'menuContent': {
-          templateUrl: 'templates/lists.html',
-          controller: 'ListsCtrl'
-        }
-      }
-    })
+    }
+  })
 
   .state('app.list', {
     url: '/lists/:listId',
@@ -97,7 +89,15 @@ angular.module('starter',
         controller: 'ListCtrl'
       }
     }
-  });
+  })
+
+  .state('logout', {
+    url: '/logout',
+    controller: function($window, $state){
+      $window.localStorage.removeItem('jwtToken');
+      $state.go('signin');
+    }
+  })
   // if none of the above states are matched, use this as the fallback
   $urlRouterProvider.otherwise('/signin');
 })

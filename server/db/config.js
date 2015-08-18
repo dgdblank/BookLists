@@ -25,23 +25,12 @@ db.knex.schema.hasTable("users").then(function (exist){
 	}
 });
 
-// db.knex.schema.hasTable("listTypes").then(function (exist){
-// 	if (!exist) {
-// 		db.knex.schema.createTable("listTypes", function (type){
-// 			type.increments("id").primary();
-// 			type.string("name");
-// 		}).then(function (table){
-// 			console.log("Created LISTTYPES table");
-// 		});
-// 	}
-// });
 
 db.knex.schema.hasTable("lists").then(function (exist){
 	if (!exist) {
 		db.knex.schema.createTable("lists", function (list){
 			list.increments("id").primary();
 			list.string("name");
-			list.string("type");
 			list.integer("user_id").unsigned().references("users.id");
 		}).then(function (table){
 			console.log("Created LISTS table");

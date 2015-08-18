@@ -53,9 +53,23 @@ angular.module('starter.services', [])
 		})
 	}
 
+	var listName = '';
+	var setName = function(name){
+		console.log(name);
+		listName = name;
+		console.log('set', name);
+	};
+
+	var getName = function(){
+		console.log('getName called');
+		return listName;
+	};
+
 	return {
 		addList: addList,
-		getLists: getLists
+		getLists: getLists,
+		setName: setName,
+		getName: getName
 	};
 })
 

@@ -1,10 +1,11 @@
 <ion-view view-title="Search">
   <ion-content>
-    <form class="item item-input"ng-submit="search()">
+  <div class="list list-inset">
+    <form class="item item-input" ng-submit="search()">
       <i class="icon ion-search placeholder-icon"></i>
       <input ng-model="book.title" type="search" placeholder="Search by Title">
-      <button class="button-balanced">Search</button>
     </form>
+  </div>
     <div class="list">
       <label ng-repeat="result in searchResults" class="item item-thumbnail-left item-input item-select">
         <div class="input-label">
@@ -19,3 +20,5 @@
     </div>
   </ion-content>
 </ion-view>
+
+

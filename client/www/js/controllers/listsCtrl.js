@@ -17,7 +17,10 @@ angular.module('starter.lists', [])
     Lists.addList($scope.newList, $scope.userId);
     $scope.getLists();
     $scope.newList.name = '';
-    $scope.newList.type = '';
+  };
+
+  $scope.setListName = function(name){
+    Lists.setName(name);
   };
 
   $scope.getLists();
