@@ -1,8 +1,8 @@
 angular.module('starter.lists', [])
 
-.controller('ListsCtrl', function ($scope, $rootScope, Lists){
+.controller('ListsCtrl', function ($scope, $window, Lists){
   $scope.newList = {};
-  $scope.userId = $rootScope.currentUser;
+  $scope.userId = $window.localStorage.getItem('userId');
 
 
   $scope.getLists = function(){

@@ -1,10 +1,10 @@
 angular.module('starter.search', [])
 
-.controller('SearchCtrl', function ($scope, $rootScope, Books, Lists){
+.controller('SearchCtrl', function ($scope, $window, Books, Lists){
   $scope.book = {};
   $scope.searchResults = [];
   $scope.selectedList = "Add to List";
-  $scope.userId = $rootScope.currentUser;
+  $scope.userId = $window.localStorage.getItem('userId');
 
   $scope.search = function(){
     Books.findBook($scope.book.title)

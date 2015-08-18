@@ -8,7 +8,7 @@ angular.module('starter.auth', [])
 		Auth.signup($scope.user)
 			.then(function (data){
 				$window.localStorage.setItem("jwtToken", data.token);
-				$rootScope.currentUser = data.userId;
+				$window.localStorage.setItem("userId", data.userId);
 				$scope.user.username = '';
 				$scope.user.password = '';
 				$state.go('app.lists');
@@ -23,7 +23,7 @@ angular.module('starter.auth', [])
 			.then(function (data){
 				console.log(data);
 				$window.localStorage.setItem("jwtToken", data.token);
-				$rootScope.currentUser = data.userId;
+				$window.localStorage.setItem("userId", data.userId);
 				$scope.user.username = '';
 				$scope.user.password = '';
 				$state.go('app.lists');
