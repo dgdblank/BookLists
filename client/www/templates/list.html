@@ -1,10 +1,12 @@
-<ion-view view-title="list">
+<ion-view view-title="list.name">
   <ion-content>
-    <h1>list.title</h1>
-    <ion-list>
-      <ion-item ng-repeat="book in books">
-      {{book.name}}
-      </ion-item>
-    </ion-list>
+    <h1>list.name</h1>
+    <div class="list">
+      <label ng-repeat="book in books" class="item item-thumbnail-left">
+          <img ng-src="{{book.thumbnail}}">
+          <h2>{{book.title}}</h2>
+          <p>{{book.author}}</p>
+      </label>
+    </div>
   </ion-content>
 </ion-view>

@@ -5,4 +5,5 @@ module.exports = function(app){
   app.param('listId', listController.getListById);
 
   app.post("/:listId/addBook", listController.addBook);
+  app.get("/:listId/getBooks", listController.getBooks);
 }

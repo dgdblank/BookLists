@@ -86,9 +86,21 @@ angular.module('starter.services', [])
 		});
 	};
 
+	var getBooks = function(listId){
+		console.log('getBooks', listId);
+		return $http({
+			method: "GET",
+			url: "/lists/" + listId + "/getBooks"
+		})
+		.then(function (resp){
+			return resp.data;
+		})
+	}
+
 	return {
 		findBook: findBook,
-		addBook: addBook
+		addBook: addBook,
+		getBooks: getBooks
 	};
 
 })

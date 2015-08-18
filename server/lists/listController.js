@@ -19,10 +19,8 @@ module.exports = {
       })
   },
 
+//TODO: Check for duplicates in join table;
   addBook: function(req, res){
-    console.log("got to add book");
-    console.log('list', req.list);
-    console.log('book', req.body.volumeInfo);
     var book = req.body.volumeInfo;
 
     Book.forge({
@@ -48,13 +46,30 @@ module.exports = {
       } else {
         foundBook.related('lists').attach([req.list.id]);
         res.sendStatus(201);
-      }
+      }ß
     })
     .catch(function (error){
       console.log(error);
     });
-    // add book and list to join table
-    // return 200 code
+  },
+
+  getBooks: function(req, res){
+    List.forge({
+      id: req.list.id
+    })
+    .fetch({withRelated: ['books']})
+    .then(function (list){
+      if(!list){
+        throw new Error('list cannot be found');
+      }
+      res.json({
+        list: list,
+        books: list.related('books')
+      });
+    })
+    .catch(function (error){
+      console.log(error);
+    });
   }
 
-}
+};
