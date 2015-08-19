@@ -1,20 +1,25 @@
 // Connects the SQL database and creates database tables
 
 //development
+// var knex = require("knex")({
+// 	client: "mysql",
+// 	connection: {
+// 		host: "localhost",
+// 		user: "root",
+// 		database: "booklists",
+// 		charset: "utf8"
+// 	}
+// });
+
+// production
 var knex = require("knex")({
-	client: "mysql",
-	connection: {
+	client: 'mysql',
+	connection: process.env.DATABASE_URL || {
 		host: "localhost",
 		user: "root",
 		database: "booklists",
 		charset: "utf8"
 	}
-});
-
-// production
-var knex = require("knex")({
-	client: 'mysql',
-	connection: process.env.DATABASE_URL
 });
 
 var db = require("bookshelf")(knex);

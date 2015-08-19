@@ -40,9 +40,5 @@
   ],
   "cordovaPlatforms": [
     "ios"
-  ],
-   "repository": {
-    "type": "git",
-    "url": "https://github.com/dgdblank/bookLists"
-  }
+  ]
 }
