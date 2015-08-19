@@ -1,7 +1,6 @@
 var Models = require('../db/models.js');
 var List = Models.List;
 var Book = Models.Book;
-var _ = require('underscore');
 
 module.exports = {
 
