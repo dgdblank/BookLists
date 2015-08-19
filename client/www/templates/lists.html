@@ -1,10 +1,10 @@
 <ion-view view-title="Lists">
   <ion-content>
     <div class="list list-inset">
-    <form class="item item-input" ng-submit="addlist()">
-      <i class="icon ion-pin placeholder-icon"></i>
-      <input type="text" ng-model="newList.name" placeholder="add a new list">
-    </form>
+      <form class="item item-input" ng-submit="addlist()">
+        <i class="icon ion-pin placeholder-icon"></i>
+        <input type="text" ng-model="newList.name" placeholder="add a new list">
+      </form>
     </div>
     <ion-list>
       <ion-item ng-repeat="list in lists" href="#/app/lists/{{list.id}}" ng-click="setListName(list.name)">

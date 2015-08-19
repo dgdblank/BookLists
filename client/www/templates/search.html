@@ -8,13 +8,13 @@
   </div>
     <div class="list">
       <label ng-repeat="result in searchResults" class="item item-thumbnail-left">
-          <img ng-src="{{result.volumeInfo.imageLinks.thumbnail}}">
-          <h2>{{result.volumeInfo.title}}</h2>
-          <p>{{result.volumeInfo.authors[0]}}</p>
-          <select ng-model="selectedList" ng-change="addToList(selectedList, result)">
-            <option selected>Add to List:</option>
-            <option ng-repeat="list in lists">{{list.name}}</option>
-            </select>
+        <img ng-src="{{result.volumeInfo.imageLinks.thumbnail}}">
+        <h2>{{result.volumeInfo.title}}</h2>
+        <p>{{result.volumeInfo.authors[0]}}</p>
+        <select ng-model="selectedList" ng-change="addToList(selectedList, result)">
+          <option selected>Add to List:</option>
+          <option ng-repeat="list in lists">{{list.name}}</option>
+        </select>
       </label>
     </div>
   </ion-content>

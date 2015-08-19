@@ -40,7 +40,7 @@ angular.module('starter',
     controller: 'AppCtrl',
     access: {
       login: true
-    } // applies to all children of app
+    } 
   })
 
   .state('signin', {
@@ -109,6 +109,9 @@ angular.module('starter',
   $rootScope.$on("$stateChangeStart", function (event, toState){
     var requireAccess = toState.access.login;
 
+    // Checks if the user is logged in and if the page requires 
+    // the user to be logged in. 
+    // Redirects to login if not.
     if(!$window.localStorage.jwtToken && requireAccess){
       event.preventDefault();
       console.log('requires login');

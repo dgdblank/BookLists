@@ -12,7 +12,3 @@ var Lists = exports.Lists = db.Collection.extend({
 var Books = exports.Books = db.Collection.extend({
 	model: Models.Book
 });
-
-// var Types = exports.Type = db.Collection.extend({
-// 	model: Models.Type
-// })

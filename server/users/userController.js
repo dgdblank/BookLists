@@ -10,6 +10,8 @@ var secret = "MYWITTYSECRET";
 
 module.exports = {
 	
+	// Gets the user by the id passed in API call
+	// and sends it to the next method
 	getUserById: function(req, res, next, userId){
 		console.log('getUserById', userId);
 		User.forge({id: userId})
@@ -26,6 +28,7 @@ module.exports = {
 			})
 	},
 
+	// Adds the list to database according to user
 	addList: function(req, res) {
 		var name = req.body.name;
 		var type = req.body.type;
@@ -47,6 +50,7 @@ module.exports = {
 
 	},
 
+	// Fetches the user's lists
 	getLists: function(req, res){
 		Lists.query("where", "user_id", "=", req.user.id)
 		.fetch()
@@ -61,6 +65,7 @@ module.exports = {
 		});
 	},
 
+	// Adds the user to the database and sends back a token.
 	signup: function(req, res){
 		var username = req.body.username;
 		var password = req.body.password;
@@ -94,6 +99,7 @@ module.exports = {
 			});
 	},
 
+	// Checks that the user is in the database and sends back a token
 	signin: function(req, res){
 		var username = req.body.username;
 		var password = req.body.password;

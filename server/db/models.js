@@ -48,11 +48,3 @@ var Book = exports.Book = db.Model.extend({
 		return this.belongsToMany(List, "lists_books");
 	}
 });
-
-// var Type = exports.Type = db.Model.extend({
-// 	tableName: "types",
-
-// 	lists: function() {
-// 		return this.hasMany(List, "list_type_id");
-// 	}
-// })

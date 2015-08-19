@@ -3,7 +3,6 @@ angular.module('starter.services', [])
 .factory('Auth', function ($http){
 
 	var signup = function (user){
-		console.log('services reached', user);
 		return $http({
 			method: "POST",
 			url: "/users/signup",
@@ -15,7 +14,6 @@ angular.module('starter.services', [])
 	};
 
 	var signin = function (user){
-		console.log('signin services reached', user);
 		return $http({
 			method: "POST",
 			url: "/users/signin",
@@ -35,7 +33,6 @@ angular.module('starter.services', [])
 .factory('Lists', function ($http){
 
 	var addList = function(list, id){
-		console.log('list', list);
 		return $http({
 			method: "POST",
 			url: "/users/" + id + "/addList",
@@ -55,13 +52,10 @@ angular.module('starter.services', [])
 
 	var listName = '';
 	var setName = function(name){
-		console.log(name);
 		listName = name;
-		console.log('set', name);
 	};
 
 	var getName = function(){
-		console.log('getName called');
 		return listName;
 	};
 
@@ -88,8 +82,6 @@ angular.module('starter.services', [])
 	};
 
 	var addBook = function(listId, book){
-		console.log('addBook reached', book);
-		console.log('listId', listId);
 		return $http({
 			method: "POST",
 			url: "/lists/" + listId + "/addBook",
@@ -101,7 +93,6 @@ angular.module('starter.services', [])
 	};
 
 	var getBooks = function(listId){
-		console.log('getBooks', listId);
 		return $http({
 			method: "GET",
 			url: "/lists/" + listId + "/getBooks"
@@ -117,18 +108,4 @@ angular.module('starter.services', [])
 		getBooks: getBooks
 	};
 
-})
-
-// .factory('authenticationService', function ($window){
-// 	var auth = {
-// 		isLogged: false
-// 	};
-
-// 	try {
-// 		if ($window.localStorage.getItem("jwtToken")){
-// 			auth.isLogged = true;
-// 		}
-// 	} catch (e) {};
-
-// 	return auth;
-// })
+});

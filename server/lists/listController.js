@@ -5,6 +5,8 @@ var _ = require('underscore');
 
 module.exports = {
 
+  // Gets the list by the id passed to the server
+  // then passes it to the next method.
   getListById: function(req, res, next, listId){
     List.forge({id: listId})
       .fetch()
@@ -20,15 +22,20 @@ module.exports = {
       })
   },
 
+ // Adds the book to the database and the lists_books join table
   addBook: function(req, res){
     var book = req.body.volumeInfo;
 
+    // Checks if the book already exists in the database 
+    // and if it has already been added to the specified list
     Book.forge({
       title: book.title, 
       author: book.authors[0]
     })
-    .fetch({withRelated: ['lists']})
+    .fetch({withRelated: ['lists']}) // TO DO: Query by list/book relationship in join table
     .then(function (foundBook){
+      // if the book is not in the database,
+      // add it and attach it to the join table
       if(!foundBook){
         Book.forge({
           title: book.title, 
@@ -43,6 +50,10 @@ module.exports = {
           res.sendStatus(201);
         })
       } else {
+        // if the book is in the database, but not attached to the list,
+        // add the relationship to the join table
+
+        // TO DO: CHANGE TO QUERY
         var lists = foundBook.related('lists').toJSON();
         var everyTest = _.every(lists, function(list){
           if(list.id !== req.list.id){
@@ -62,6 +73,7 @@ module.exports = {
     });
   },
 
+  // Gets the books according to list selected
   getBooks: function(req, res){
     List.forge({
       id: req.list.id
