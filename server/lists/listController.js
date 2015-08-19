@@ -32,7 +32,11 @@ module.exports = {
       title: book.title, 
       author: book.authors[0]
     })
-    .fetch({withRelated: ['lists']}) // TO DO: Query by list/book relationship in join table
+    .fetch( {withRelated: ['lists', {'lists': function(qb) {
+          qb.where('lists.id', '=', req.list.id);
+        }
+      }]
+    })
     .then(function (foundBook){
       // if the book is not in the database,
       // add it and attach it to the join table
@@ -52,15 +56,8 @@ module.exports = {
       } else {
         // if the book is in the database, but not attached to the list,
         // add the relationship to the join table
-
-        // TO DO: CHANGE TO QUERY
         var lists = foundBook.related('lists').toJSON();
-        var everyTest = _.every(lists, function(list){
-          if(list.id !== req.list.id){
-            return true;
-          }
-        })
-        if(everyTest){
+        if(lists.length === 0){
           foundBook.related('lists').attach([req.list.id]);
           res.sendStatus(201);
         } else {
