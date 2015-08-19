@@ -3,6 +3,8 @@ var app = express();
 
 // configure server with middleware and routing
 require("./middleware.js")(app, express);
+
+// serve static files
 app.use(express.static(__dirname + "/../client/www"));
 
 app.set("port", process.env.PORT || 8000);
