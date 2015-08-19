@@ -7,15 +7,14 @@
     </form>
   </div>
     <div class="list">
-      <label ng-repeat="result in searchResults" class="item item-thumbnail-left item-input item-select">
-        <div class="input-label">
+      <label ng-repeat="result in searchResults" class="item item-thumbnail-left">
           <img ng-src="{{result.volumeInfo.imageLinks.thumbnail}}">
           <h2>{{result.volumeInfo.title}}</h2>
           <p>{{result.volumeInfo.authors[0]}}</p>
-        </div>
-          <select ng-model="selectedList" ng-change="addToList(selectedList, result)" placeholder="Add to List">
-          <option ng-repeat="list in lists">{{list.name}}</option>
-          </select>
+          <select ng-model="selectedList" ng-change="addToList(selectedList, result)">
+            <option selected>Add to List:</option>
+            <option ng-repeat="list in lists">{{list.name}}</option>
+            </select>
       </label>
     </div>
   </ion-content>

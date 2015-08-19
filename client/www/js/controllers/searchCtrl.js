@@ -6,7 +6,7 @@ angular.module('starter.search', [])
 
     $scope.book = {};
     $scope.searchResults = [];
-    $scope.selectedList = "Add to List";
+    $scope.selectedList = "Add to List:";
     $scope.userId = $window.localStorage.getItem('userId');
 
     $scope.search = function(){
@@ -25,7 +25,6 @@ angular.module('starter.search', [])
     $scope.getLists = function(){
       Lists.getLists($scope.userId)
         .then(function (lists){
-          console.log(lists);
           $scope.lists = lists;
         })
     };
@@ -43,6 +42,5 @@ angular.module('starter.search', [])
     }
 
     $scope.getLists();
-
-  })
+  });
 });
