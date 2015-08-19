@@ -100,7 +100,7 @@ angular.module('starter',
     }
   })
   // if none of the above states are matched, use this as the fallback
-  $urlRouterProvider.otherwise('/app/lists');
+  $urlRouterProvider.otherwise('/signin');
 })
 
 .run(function ($rootScope, $window, $state){
