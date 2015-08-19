@@ -8,7 +8,6 @@ The deployed version can be found at: https://simple-booklister.herokuapp.com
 - Node 0.10.x
 - MYSQL 5.x
 - npm 2.10.x
-- bower 1.4.x
 
 ## To run locally:
 
@@ -31,6 +30,7 @@ $ mysql -u root
 <b>Step 4:</b> Create a local database called 'booklists' from within mySQL
 ```
 mysql> CREATE DATABASE booklists;
+mysql> use booklists;
 ```
 
 <b>Step 5:</b> Set up your NODE_ENV variable for the development environment
