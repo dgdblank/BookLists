@@ -13,7 +13,6 @@ module.exports = {
 	// Gets the user by the id passed in API call
 	// and sends it to the next method
 	getUserById: function(req, res, next, userId){
-		console.log('getUserById', userId);
 		User.forge({id: userId})
 			.fetch()
 			.then(function (user){
@@ -31,10 +30,9 @@ module.exports = {
 	// Adds the list to database according to user
 	addList: function(req, res) {
 		var name = req.body.name;
-		var type = req.body.type;
+		
 		List.forge({ 
 			name: name,
-			type: type,
 			user_id: req.user.id
 		})
 			.save()
