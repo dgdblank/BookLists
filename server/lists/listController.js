@@ -24,12 +24,14 @@ module.exports = {
  // Adds the book to the database and the lists_books join table
   addBook: function(req, res){
     var book = req.body.volumeInfo;
+    var author = book.authors ? book.authors[0] : null;
+    var genre = book.categories ? book.categories[0] : null;
 
     // Checks if the book already exists in the database 
     // and if it has already been added to the specified list
     Book.forge({
       title: book.title, 
-      author: book.authors[0]
+      author: author
     })
     .fetch( {withRelated: ['lists', {'lists': function(qb) {
           qb.where('lists.id', '=', req.list.id);
@@ -42,8 +44,8 @@ module.exports = {
       if(!foundBook){
         Book.forge({
           title: book.title, 
-          author: book.authors[0],
-          genre: book.categories[0],
+          author: author,
+          genre: genre,
           pages: book.pageCount,
           thumbnail: book.imageLinks.thumbnail
         })
