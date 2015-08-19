@@ -8,6 +8,7 @@ require("./middleware.js")(app, express);
 app.use(express.static(__dirname + "/../client/www"));
 
 app.set("port", process.env.PORT || 5000);
+
 app.listen(app.get("port"), function(){
 	console.log("Listening on " + app.get("port"));
 })
