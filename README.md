@@ -44,3 +44,10 @@ $ node server/server.js
 ```
 
 <b>Step 7:</b> Navigate to localhost:5000 and signup for an account!
+
+## Features to Add:
+1. Notifications for when books are successfully added to the list.
+2. Error messages when user does not have a list or book has already been added. Also, for login and signup.
+3. View additional book information upon selection.
+4. Removing books form lists
+5. Addings books after clicking on a newly created list.
