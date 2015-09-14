@@ -5,7 +5,7 @@ angular.module('starter.services', [])
 	var signup = function (user){
 		return $http({
 			method: "POST",
-			url: "/users/signup",
+			url: "/users/new",
 			data: user
 		})
 		.then(function (resp){
@@ -16,7 +16,7 @@ angular.module('starter.services', [])
 	var signin = function (user){
 		return $http({
 			method: "POST",
-			url: "/users/signin",
+			url: "/users/session",
 			data: user
 		})
 		.then(function (resp){
@@ -35,7 +35,7 @@ angular.module('starter.services', [])
 	var addList = function(list, id){
 		return $http({
 			method: "POST",
-			url: "/users/" + id + "/addList",
+			url: "/users/" + id,
 			data: JSON.stringify(list)
 		});
 	};
@@ -43,7 +43,7 @@ angular.module('starter.services', [])
 	var getLists = function(id){
 		return $http({
 			method: "GET",
-			url: "/users/" + id + "/getLists"
+			url: "/users/" + id
 		})
 		.then(function (resp){
 			return resp.data;
@@ -84,7 +84,7 @@ angular.module('starter.services', [])
 	var addBook = function(listId, book){
 		return $http({
 			method: "POST",
-			url: "/lists/" + listId + "/addBook",
+			url: "/lists/" + listId,
 			data: book
 		})
 		.then(function (resp){
@@ -95,7 +95,7 @@ angular.module('starter.services', [])
 	var getBooks = function(listId){
 		return $http({
 			method: "GET",
-			url: "/lists/" + listId + "/getBooks"
+			url: "/lists/" + listId
 		})
 		.then(function (resp){
 			return resp.data;
